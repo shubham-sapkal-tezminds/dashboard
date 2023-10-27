@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import BgImg from "../assets/bg_image.png";
-import LogIn from "../components/Login";
-import SignUp from "../components/SignUp";
+import LogIn from "./Login";
+import SignUp from "./SignUp";
 
 const Home = () => {
   return (
