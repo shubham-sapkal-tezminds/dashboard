@@ -188,6 +188,7 @@ const Customer = ({ show = true }) => {
               }}
               pageSizeOptions={""}
               checkboxSelection
+              disableRowSelectionOnClick
               hideFooterPagination={true}
             />
           </div>
