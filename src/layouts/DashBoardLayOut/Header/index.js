@@ -1,36 +1,37 @@
 import { useState } from "react";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
+// import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
-import Chip from "@mui/material/Chip";
+// import Chip from "@mui/material/Chip";
 import MenuItem from "@mui/material/MenuItem";
 import Logo from "../../../assets/tezminds_logo_1.png";
 import AvatarImg from "../../../assets/Oval.png";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Navbar = ({ handleClick }) => {
-  const [anchorElNav, setAnchorElNav] = useState(null);
+  // const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
+  // const handleOpenNavMenu = (event) => {
+  //   setAnchorElNav(event.currentTarget);
+  // };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+  // const handleCloseNavMenu = () => {
+  //   setAnchorElNav(null);
+  // };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
@@ -64,7 +65,7 @@ const Navbar = ({ handleClick }) => {
                 paddingRight: "23px",
               }}
             >
-              <img src={Logo} />
+              <img src={Logo} alt="Logo image1" />
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -100,7 +101,28 @@ const Navbar = ({ handleClick }) => {
             <Box
               sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
             ></Box>
-
+            <Box
+              sx={{
+                height: "35px",
+                width: "35px",
+                backgroundColor: "#DEECFB",
+                borderRadius: 2,
+                marginRight: 3,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Button
+                sx={{
+                  "& .MuiButton-root, &:hover": {
+                    backgroundColor: "transparent",
+                  },
+                }}
+              >
+                <NotificationsNoneOutlinedIcon sx={{ color: "#000" }} />
+              </Button>
+            </Box>
             <Box
               sx={{
                 flexGrow: 0,

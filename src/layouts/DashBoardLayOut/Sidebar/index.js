@@ -3,7 +3,6 @@ import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import SidebarItems from "./SidebarItems";
 import { useLocation } from "react-router-dom";
-import { Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 const drawerWidth = 265;
@@ -52,9 +51,7 @@ const DashBoardSideBar = (props) => {
         </List>
         <Divider />
       </Drawer>
-      <Main open={props.open}>
-        <Typography>hjweghkjash</Typography>
-      </Main>
+      <Main open={props.open}></Main>
     </>
   );
 };
