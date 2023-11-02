@@ -16,6 +16,21 @@ import { useState } from "react";
 
 import Customer from "../Customerlist/index";
 
+const buttonTexts = [
+  {
+    label: "All time",
+  },
+  {
+    label: "This year",
+  },
+  {
+    label: "This week",
+  },
+  {
+    label: "Today",
+  },
+];
+
 const DashBoard = () => {
   const [activeButton, setAciveButton] = useState("All time");
 
@@ -201,69 +216,29 @@ const DashBoard = () => {
             <InfoOutlinedIcon item />
           </Grid>
           <Box sx={{ display: "flex", direction: "row", gap: "17px" }}>
-            <Button
-              onClick={() => handlActive("All time")}
-              sx={{
-                color: activeButton === "All time" ? "#0054d9" : "#B3B8BD",
-                backgroundColor:
-                  activeButton === "All time" ? "#DEECFB" : "white",
-                "&:hover": {
-                  backgroundColor:
-                    activeButton === "All time" ? "#DEECFB" : "white",
-                },
-                textTransform: "none",
-                padding: 0,
-              }}
-            >
-              <Typography sx={{ padding: "4px 14px" }}>All time</Typography>
-            </Button>
-            <Button
-              onClick={() => handlActive("This year")}
-              sx={{
-                color: activeButton === "This year" ? "#0054d9" : "#B3B8BD",
-                backgroundColor:
-                  activeButton === "This year" ? "#DEECFB" : "white",
-                "&:hover": {
-                  backgroundColor:
-                    activeButton === "This year" ? "#DEECFB" : "white",
-                },
-                textTransform: "none",
-                padding: 0,
-              }}
-            >
-              <Typography sx={{ padding: "4px 14px" }}>This year</Typography>
-            </Button>
-            <Button
-              onClick={() => handlActive("This week")}
-              sx={{
-                color: activeButton === "This week" ? "#0054d9" : "#B3B8BD",
-                backgroundColor:
-                  activeButton === "This week" ? "#DEECFB" : "white",
-                "&:hover": {
-                  backgroundColor:
-                    activeButton === "This week" ? "#DEECFB" : "white",
-                },
-                textTransform: "none",
-                padding: 0,
-              }}
-            >
-              <Typography sx={{ padding: "4px 14px" }}>This week</Typography>
-            </Button>
-            <Button
-              onClick={() => handlActive("Today")}
-              sx={{
-                color: activeButton === "Today" ? "#0054d9" : "#B3B8BD",
-                backgroundColor: activeButton === "Today" ? "#DEECFB" : "white",
-                "&:hover": {
-                  backgroundColor:
-                    activeButton === "Today" ? "#DEECFB" : "white",
-                },
-                textTransform: "none",
-                padding: 0,
-              }}
-            >
-              <Typography sx={{ padding: "4px 14px" }}>Today</Typography>
-            </Button>
+            {buttonTexts.map((item, index) => {
+              return (
+                <Button
+                  onClick={() => handlActive(`${item.label}`)}
+                  sx={{
+                    color:
+                      activeButton === `${item.label}` ? "#0054d9" : "#B3B8BD",
+                    backgroundColor:
+                      activeButton === `${item.label}` ? "#DEECFB" : "white",
+                    "&:hover": {
+                      backgroundColor:
+                        activeButton === `${item.label}` ? "#DEECFB" : "white",
+                    },
+                    textTransform: "none",
+                    padding: 0,
+                  }}
+                >
+                  <Typography sx={{ padding: "4px 14px" }}>
+                    {item.label}
+                  </Typography>
+                </Button>
+              );
+            })}
           </Box>
           <Box
             sx={{
@@ -364,69 +339,6 @@ const DashBoard = () => {
         </Box>
 
         <Customer show={false} />
-        {/* {console.log("rows per page 2", rowsPerPage)} */}
-
-        {/* <Box
-          sx={{
-            backgroundColor: "#FFFFFF",
-            borderRadius: 4,
-            pt: 2.6,
-            pl: 3,
-            pr: 3.9,
-            mb: 4,
-          }}
-        >
-          <Typography variant="h6" sx={{ mb: 2 }}>
-            Customer List
-          </Typography>
-          <Divider sx={{ mb: 3 }} />
-          <TextField
-            variant="outlined"
-            placeholder="Search Customer"
-            sx={{
-              border: "1px solid #BFC0C2",
-              borderRadius: 2,
-              height: "42px",
-              "& .MuiInputBase-root": {
-                height: "42px",
-              },
-              mb: 3.37,
-            }}
-            InputProps={{
-              startAdornment: <SearchIcon sx={{ color: "#BFC0C2" }} />,
-            }}
-          />
-          <div style={{ height: 400, width: "100%" }}>
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              border="none"
-              sx={{
-                " &.MuiDataGrid-root": {
-                  borderStyle: "none",
-                  border: "none",
-                  padding: 0,
-                },
-                // "&>.MuiDataGrid-main": {
-                //   "&>.MuiDataGrid-columnHeaders": {
-                //     borderBottom: "none",
-                //   },
-
-                //   "& div div div div >.MuiDataGrid-cell": {
-                //     borderBottom: "none",
-                //   },
-                // },
-              }}
-              initialState={{
-                pagination: {
-                  paginationModel: { page: 0, pageSize: 5 },
-                },
-              }}
-              pageSizeOptions={[5, 10]}
-              checkboxSelection
-            />
-          </div>
-        </Box> */}
       </Container>
     </>
   );
