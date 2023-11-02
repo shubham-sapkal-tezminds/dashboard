@@ -14,7 +14,6 @@ const dashBoardBg = createTheme({
 function App() {
   return (
     <>
-      {/* <LandingPage /> */}
       <ThemeProvider theme={dashBoardBg}>
         <CssBaseline />
         <Routes />

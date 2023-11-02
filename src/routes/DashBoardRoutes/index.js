@@ -1,9 +1,16 @@
-import DashboardLayout from "../layouts/DashBoardLayOut";
-import Dashboard from "../pages/dashboard";
-import Customer from "../pages/customerlist";
-import Settings from "../pages/settings";
-import ContactUs from "../pages/contactUs";
-import Pricing from "../pages/pricing";
+import DashboardLayout from "../../layouts/DashBoardLayOut";
+import Dashboard from "../../Pages/Dashboard";
+import Customer from "../../Pages/Customerlist";
+import Settings from "../../Pages/Settings";
+import ContactUs from "../../Pages/ContactUs";
+import Pricing from "../../Pages/Pricing";
+import {
+  PATH_DASHBOARD,
+  PATH_CUSTOMER_LIST,
+  PATH_CONTACT_US,
+  PATH_PRICING,
+  PATH_SETTINGS,
+} from "../../Path";
 
 const DashboardRoutes = {
   path: "/",
@@ -14,7 +21,7 @@ const DashboardRoutes = {
   ),
   children: [
     {
-      path: "dashboard",
+      path: PATH_DASHBOARD,
       children: [
         {
           path: "",
@@ -23,7 +30,7 @@ const DashboardRoutes = {
       ],
     },
     {
-      path: "/customer",
+      path: PATH_CUSTOMER_LIST,
       children: [
         {
           path: "",
@@ -32,7 +39,7 @@ const DashboardRoutes = {
       ],
     },
     {
-      path: "/settings",
+      path: PATH_SETTINGS,
       children: [
         {
           path: "",
@@ -41,7 +48,7 @@ const DashboardRoutes = {
       ],
     },
     {
-      path: "/contactUs",
+      path: PATH_CONTACT_US,
       children: [
         {
           path: "",
@@ -50,7 +57,7 @@ const DashboardRoutes = {
       ],
     },
     {
-      path: "/pricing",
+      path: PATH_PRICING,
       children: [
         {
           path: "",

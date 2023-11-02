@@ -14,7 +14,7 @@ import BugReportOutlinedIcon from "@mui/icons-material/BugReportOutlined";
 
 import { useState } from "react";
 
-import Customer from "../customerlist/index";
+import Customer from "../Customerlist/index";
 
 const DashBoard = () => {
   const [activeButton, setAciveButton] = useState("All time");
@@ -364,6 +364,7 @@ const DashBoard = () => {
         </Box>
 
         <Customer show={false} />
+        {/* {console.log("rows per page 2", rowsPerPage)} */}
 
         {/* <Box
           sx={{

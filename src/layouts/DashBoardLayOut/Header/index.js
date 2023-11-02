@@ -6,13 +6,9 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-// import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
-// import Chip from "@mui/material/Chip";
 import MenuItem from "@mui/material/MenuItem";
-import Logo from "../../../assets/tezminds_logo_1.png";
-import AvatarImg from "../../../assets/Oval.png";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 
@@ -65,7 +61,7 @@ const Navbar = ({ handleClick }) => {
                 paddingRight: "23px",
               }}
             >
-              <img src={Logo} alt="Logo image1" />
+              <img src="/assets/tezminds_logo_1.png" alt="Logo image1" />
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -143,7 +139,7 @@ const Navbar = ({ handleClick }) => {
                   }}
                 >
                   <IconButton onClick={handleOpenUserMenu} sx={{}}>
-                    <Avatar alt="Remy Sharp" src={AvatarImg} />
+                    <Avatar alt="Remy Sharp" src="/assets/Oval.png" />
                   </IconButton>
                 </Tooltip>
                 <Menu

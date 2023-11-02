@@ -12,10 +12,11 @@ import { DataGrid } from "@mui/x-data-grid";
 import SearchIcon from "@mui/icons-material/Search";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import { Link } from "react-router-dom";
-import { getAllUsers } from "../../api/api";
+import { getAllUsers } from "../../services/api";
 import { useEffect, useState } from "react";
+import { api } from "../../services";
 
-const dpURL = "/images/Oval.png";
+const dpURL = "/assets/Oval.png";
 
 const columns = [
   { field: "id", headerName: "ID" },
@@ -45,7 +46,7 @@ const columns = [
   },
 ];
 
-const Customer = ({ show = true }) => {
+const Customer = ({ show = true, limitDatagridRows }) => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -67,7 +68,7 @@ const Customer = ({ show = true }) => {
     const fetchData = async () => {
       try {
         console.log(page + 1, rowsPerPage, "data sent to api");
-        const data = await getAllUsers(page, rowsPerPage);
+        const data = await api.getAllUsers(page, rowsPerPage);
         console.log("get req 2", data);
         setUsers(data.records);
         setUserCount(data.count);
@@ -157,7 +158,7 @@ const Customer = ({ show = true }) => {
               }}
             />
           )}
-          <div style={{ height: 400, width: "100%" }}>
+          <div style={{ height: "auto", width: "100%" }}>
             <DataGrid
               rows={users}
               columns={columns}
@@ -183,7 +184,10 @@ const Customer = ({ show = true }) => {
               }}
               initialState={{
                 pagination: {
-                  paginationModel: { page: page, pageSize: rowsPerPage },
+                  paginationModel: {
+                    page: page,
+                    pageSize: rowsPerPage,
+                  },
                 },
               }}
               pageSizeOptions={""}
@@ -206,7 +210,7 @@ const Customer = ({ show = true }) => {
             display: show ? "block" : "none",
           }}
         />
-        {console.log("rows per page", rowsPerPage)}
+        {console.log("rows per page 1", rowsPerPage)}
       </Container>
     </>
   );
