@@ -46,7 +46,7 @@ const DashBoard = () => {
           width: "100%",
           maxWidth: "1118px",
           height: "auto",
-          marginTop: "60px",
+          marginTop: "65px",
           marginInline: "auto",
           fontFamily: "Poppins, sans-serif !important",
         }}
@@ -89,7 +89,6 @@ const DashBoard = () => {
                   variant="h6"
                   sx={{
                     fontFamily: "'Poppins', sans-serif",
-                    // fontSize: "18px",
                     color: "#FFFFFF",
                   }}
                 >
@@ -135,7 +134,6 @@ const DashBoard = () => {
                   variant="h6"
                   sx={{
                     fontFamily: "'Poppins', sans-serif",
-                    // fontSize: "18px",
                     color: "#FFFFFF",
                   }}
                 >
@@ -181,7 +179,6 @@ const DashBoard = () => {
                   variant="h6"
                   sx={{
                     fontFamily: "'Poppins', sans-serif",
-                    // fontSize: "18px",
                     color: "#FFFFFF",
                   }}
                 >

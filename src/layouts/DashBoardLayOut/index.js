@@ -11,12 +11,10 @@ const drawerWidth = 265;
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
     flexGrow: 1,
-    // margin: theme.spacing(8),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    // marginLeft: `-${drawerWidth}px`,
     ...(open && {
       transition: theme.transitions.create("margin", {
         easing: theme.transitions.easing.easeOut,
@@ -32,7 +30,6 @@ const DashBoardLayOut = () => {
 
   function openDrawerSide() {
     setOpenDrawer((prevState) => !prevState);
-    console.log("State", openDrawer);
   }
 
   return (
@@ -40,15 +37,7 @@ const DashBoardLayOut = () => {
       <Navbar handleClick={openDrawerSide} />
       <SideBar open={openDrawer} />
       <Main open={openDrawer}>
-        <Box
-          sx={
-            {
-              // position: "absolute",
-              // top: "8",
-              // left: "8",
-            }
-          }
-        >
+        <Box>
           <Outlet />
         </Box>
       </Main>

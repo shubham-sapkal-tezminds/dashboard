@@ -1,8 +1,5 @@
 import axios from "axios";
-
-const API_BASE_URL = "https://api.tezminds.com";
-let tokenStr =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE0NDQ0Nzg0MDAsInVzZXJuYW1lIjoiS2F1c2hhbCJ9.SMrgYrhFb_eJS-rdjIywDGf9VQFmm2uAUWPSeP-1FQc";
+import { API_BASE_URL, tokenStr } from "../Config";
 
 export const getAllUsers = async (page, rowsPerPage) => {
   try {
@@ -14,7 +11,7 @@ export const getAllUsers = async (page, rowsPerPage) => {
       },
     });
     const data = response.data;
-    console.log("get req 1", data);
+    // console.log("get req 1", data);
     if (data.errorCode !== 0) {
       throw new Error(data.errorMessage);
     }

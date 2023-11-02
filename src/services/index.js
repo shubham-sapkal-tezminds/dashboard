@@ -16,7 +16,7 @@ export const api = {
         },
       });
       const data = response.data;
-      console.log("get req 1", data);
+      // console.log("get req 1", data);
       if (data.errorCode !== 0) {
         throw new Error(data.errorMessage);
       }

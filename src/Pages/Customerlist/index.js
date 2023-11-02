@@ -12,9 +12,8 @@ import { DataGrid } from "@mui/x-data-grid";
 import SearchIcon from "@mui/icons-material/Search";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import { Link } from "react-router-dom";
-import { getAllUsers } from "../../services/api";
 import { useEffect, useState } from "react";
-import { api } from "../../services";
+import { getAllUsers } from "../../utils/utils";
 
 const dpURL = "/assets/Oval.png";
 
@@ -67,9 +66,9 @@ const Customer = ({ show = true, limitDatagridRows }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log(page + 1, rowsPerPage, "data sent to api");
-        const data = await api.getAllUsers(page, rowsPerPage);
-        console.log("get req 2", data);
+        // console.log(page + 1, rowsPerPage, "data sent to api");
+        const data = await getAllUsers(page, rowsPerPage);
+        // console.log("get req 2", data);
         setUsers(data.records);
         setUserCount(data.count);
       } catch (error) {
@@ -210,7 +209,7 @@ const Customer = ({ show = true, limitDatagridRows }) => {
             display: show ? "block" : "none",
           }}
         />
-        {console.log("rows per page 1", rowsPerPage)}
+        {/* {console.log("rows per page 1", rowsPerPage)} */}
       </Container>
     </>
   );
