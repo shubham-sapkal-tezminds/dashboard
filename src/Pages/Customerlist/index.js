@@ -13,17 +13,17 @@ import SearchIcon from "@mui/icons-material/Search";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getAllUsers } from "../../utils/utils";
+import { CustomerListApi } from "../../Services/CustomerListApi";
 
 const dpURL = "/assets/Oval.png";
 
 const columns = [
-  { field: "id", headerName: "ID" },
-  { field: "updated_at", headerName: "Date / Time", width: 200 },
+  { field: "id", headerName: "ID", flex: 0.1 },
+  { field: "updated_at", headerName: "Date / Time", flex: 0.5 },
   {
     field: "fullname",
     headerName: "Name",
-    flex: 1.5,
+    flex: 1.4,
     editable: true,
     renderCell: (params) => (
       <Box style={{ display: "flex", alignItems: "center" }}>
@@ -34,22 +34,24 @@ const columns = [
       </Box>
     ),
   },
-  { field: "username", headerName: "Email", width: 250 },
-  { field: "mobile_no", headerName: "Phone", width: 200 },
+  { field: "username", headerName: "Email", flex: 0.4 },
+  { field: "mobile_no", headerName: "Phone", flex: 0.4 },
   {
     renderCell: () => (
       <Button sx={{ color: "#000" }}>
         <MoreVertOutlinedIcon />
       </Button>
     ),
+    flex: 0.2,
   },
 ];
 
 const Customer = ({ show = true, limitDatagridRows }) => {
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [userCount, setUserCount] = useState();
+  const [searchCount, setSearchCount] = useState();
 
   const [page, setPage] = useState(0); // start from page 0
   const [rowsPerPage, setRowsPerPage] = useState(10); // shows number of rows per page
@@ -63,23 +65,41 @@ const Customer = ({ show = true, limitDatagridRows }) => {
     setPage(0);
   };
 
+  const [searchQuery, setSearchQuery] = useState("");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const start = page * rowsPerPage;
+        const limit = rowsPerPage;
         // console.log(page + 1, rowsPerPage, "data sent to api");
-        const data = await getAllUsers(page, rowsPerPage);
+        CustomerListApi.getAllUsers(
+          start,
+          limit,
+          searchQuery,
+          (data) => {
+            if (data && data.records) {
+              setUserCount(data.count);
+              console.log("user count", data.count);
+
+              setUsers(data.records);
+            } else {
+              console.log("Invalid data received from the server.");
+            }
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
         // console.log("get req 2", data);
-        setUsers(data.records);
-        setUserCount(data.count);
       } catch (error) {
+        // console.log(error);
         setError(error.message);
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchData();
-  }, [page, rowsPerPage]);
+  }, [page, rowsPerPage, searchQuery]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -92,13 +112,7 @@ const Customer = ({ show = true, limitDatagridRows }) => {
   return (
     <>
       <Container
-        maxWidth="lg"
         sx={{
-          width: "100%",
-          maxWidth: "1118px",
-          height: "auto",
-          marginTop: "40px",
-          marginInline: "auto",
           "&.MuiContainer-root": {
             pl: 0,
             pr: 0,
@@ -155,6 +169,8 @@ const Customer = ({ show = true, limitDatagridRows }) => {
               InputProps={{
                 startAdornment: <SearchIcon sx={{ color: "#BFC0C2" }} />,
               }}
+              value={searchQuery}
+              onInput={(e) => setSearchQuery(e.target.value)}
             />
           )}
           <div style={{ height: "auto", width: "100%" }}>
@@ -162,25 +178,7 @@ const Customer = ({ show = true, limitDatagridRows }) => {
               rows={users}
               columns={columns}
               border="none"
-              sx={{
-                " &.MuiDataGrid-root": {
-                  borderStyle: "none",
-                  border: "none",
-                  padding: 0,
-                },
-                "& .MuiDataGrid-footerContainer": {
-                  display: show ? "block" : "none",
-                },
-                // "&>.MuiDataGrid-main": {
-                //   "&>.MuiDataGrid-columnHeaders": {
-                //     borderBottom: "none",
-                //   },
-
-                //   "& div div div div >.MuiDataGrid-cell": {
-                //     borderBottom: "none",
-                //   },
-                // },
-              }}
+              autoHeight={true}
               initialState={{
                 pagination: {
                   paginationModel: {
@@ -195,21 +193,22 @@ const Customer = ({ show = true, limitDatagridRows }) => {
               hideFooterPagination={true}
             />
           </div>
+          <TablePagination
+            component="div"
+            count={userCount}
+            page={page}
+            onPageChange={handleChangePage}
+            rowsPerPage={
+              rowsPerPage
+              // show ? rowsPerPage === 10 : rowsPerPage === 5
+            }
+            onRowsPerPageChange={handleChangeRowsPerPage}
+            rowsPerPageOptions={[3, 5, 10]}
+            sx={{
+              display: show ? "block" : "none",
+            }}
+          />
         </Box>
-
-        <TablePagination
-          component="div"
-          count={userCount}
-          page={page}
-          onPageChange={handleChangePage}
-          rowsPerPage={rowsPerPage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          rowsPerPageOptions={[3, 5, 10, 15, 20, 25]}
-          sx={{
-            display: show ? "block" : "none",
-          }}
-        />
-        {/* {console.log("rows per page 1", rowsPerPage)} */}
       </Container>
     </>
   );

@@ -14,7 +14,8 @@ import BugReportOutlinedIcon from "@mui/icons-material/BugReportOutlined";
 
 import { useState } from "react";
 
-import Customer from "../Customerlist/index";
+import Customer from "../Customerlist";
+import Cards from "../../components/cards";
 
 const buttonTexts = [
   {
@@ -31,6 +32,30 @@ const buttonTexts = [
   },
 ];
 
+const cardsData = [
+  {
+    avatarimg: (
+      <PeopleAltOutlinedIcon fontSize="large" sx={{ color: "#FFFFFF" }} />
+    ),
+    title: "Customers",
+    value: "6035",
+  },
+  {
+    avatarimg: (
+      <DescriptionOutlinedIcon fontSize="large" sx={{ color: "#FFFFFF" }} />
+    ),
+    title: "Invoice",
+    value: "19",
+  },
+  {
+    avatarimg: (
+      <BugReportOutlinedIcon fontSize="large" sx={{ color: "#FFFFFF" }} />
+    ),
+    title: "Issues",
+    value: "10",
+  },
+];
+
 const DashBoard = () => {
   const [activeButton, setAciveButton] = useState("All time");
 
@@ -40,154 +65,8 @@ const DashBoard = () => {
 
   return (
     <>
-      <Container
-        maxWidth="lg"
-        sx={{
-          width: "100%",
-          maxWidth: "1118px",
-          height: "auto",
-          marginTop: "65px",
-          marginInline: "auto",
-          fontFamily: "Poppins, sans-serif !important",
-        }}
-      >
-        <Grid container spacing={2} sx={{ mb: 2.5 }}>
-          <Grid item xs={12} md={4} lg={4}>
-            <Grid
-              container
-              direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-              sx={{
-                minWidth: 359,
-                height: 98,
-                boxShadow: "none",
-                backgroundColor: "#0064D9",
-                border: "none",
-                borderRadius: 2,
-                paddingBlock: "19px",
-                paddingInline: "21px",
-              }}
-            >
-              <Box item>
-                <PeopleAltOutlinedIcon
-                  fontSize="large"
-                  sx={{ color: "#FFFFFF" }}
-                />
-                <Typography
-                  sx={{
-                    fontFamily: "'Poppins', sans-serif",
-                    fontSize: "18px",
-                    color: "#FFFFFF",
-                  }}
-                >
-                  Customers
-                </Typography>
-              </Box>
-              <Box item>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontFamily: "'Poppins', sans-serif",
-                    color: "#FFFFFF",
-                  }}
-                >
-                  6035
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid>
-          <Grid item xs={12} md={4} lg={4}>
-            <Grid
-              container
-              direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-              sx={{
-                minWidth: 359,
-                height: 98,
-                boxShadow: "none",
-                backgroundColor: "#0064D9",
-                border: "none",
-                borderRadius: 2,
-                paddingBlock: "19px",
-                paddingInline: "21px",
-              }}
-            >
-              <Box item>
-                <DescriptionOutlinedIcon
-                  fontSize="large"
-                  sx={{ color: "#FFFFFF" }}
-                />
-                <Typography
-                  sx={{
-                    fontFamily: "'Poppins', sans-serif",
-                    fontSize: "18px",
-                    color: "#FFFFFF",
-                  }}
-                >
-                  Invoice
-                </Typography>
-              </Box>
-              <Box item>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontFamily: "'Poppins', sans-serif",
-                    color: "#FFFFFF",
-                  }}
-                >
-                  19
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid>
-          <Grid item xs={12} md={4} lg={4}>
-            <Grid
-              container
-              direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-              sx={{
-                minWidth: 359,
-                height: 98,
-                boxShadow: "none",
-                backgroundColor: "#0064D9",
-                border: "none",
-                borderRadius: 2,
-                paddingBlock: "19px",
-                paddingInline: "21px",
-              }}
-            >
-              <Box item>
-                <BugReportOutlinedIcon
-                  fontSize="large"
-                  sx={{ color: "#FFFFFF" }}
-                />
-                <Typography
-                  sx={{
-                    fontFamily: "'Poppins', sans-serif",
-                    fontSize: "18px",
-                    color: "#FFFFFF",
-                  }}
-                >
-                  Issues
-                </Typography>
-              </Box>
-              <Box item>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontFamily: "'Poppins', sans-serif",
-                    color: "#FFFFFF",
-                  }}
-                >
-                  10
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid>
-        </Grid>
+      <Container maxWidth="lg">
+        <Cards data={cardsData} />
 
         <Box
           sx={{
