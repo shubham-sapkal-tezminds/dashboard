@@ -65,9 +65,27 @@ const DashBoard = () => {
 
   return (
     <>
-      <Container maxWidth="lg">
+      <Container
+        maxWidth="lg"
+        sx={{
+          "&.MuiContainer-root": {
+            backgroundColor: "#F7FBFF",
+            padding: 0,
+          },
+        }}
+      >
         <Cards data={cardsData} />
-
+      </Container>
+      <Container
+        maxWidth="lg"
+        sx={{
+          "&.MuiContainer-root": {
+            marginTop: "20px",
+            pl: 0,
+            pr: 0,
+          },
+        }}
+      >
         <Box
           sx={{
             width: "100%",
@@ -86,7 +104,7 @@ const DashBoard = () => {
             justifyContent="space-between"
             sx={{ mb: 2.5 }}
           >
-            <Typography sx={{ fontSize: "20px", color: "#6B7584" }} item>
+            <Typography variant="subtitle1" sx={{ color: "#6B7584" }} item>
               Lead Sales
             </Typography>
             <InfoOutlinedIcon item />

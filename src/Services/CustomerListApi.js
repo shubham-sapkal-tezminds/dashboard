@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_BASE_URL, tokenStr } from "../Config";
+import { API_BASE_URL, AUTH_TOKEN } from "../Config";
 
 export const CustomerListApi = {
   getAllUsers: async (
@@ -13,7 +13,7 @@ export const CustomerListApi = {
       .get(
         `${API_BASE_URL}/users?start=${start}&limit=${limit}&search=${searchQuery}`,
         {
-          headers: { Authorization: `Bearer ${tokenStr}` },
+          headers: { Authorization: `Bearer ${AUTH_TOKEN}` },
         }
       )
       .then((response) => {

@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 
 import { Outlet } from "react-router-dom";
 
-const Home = () => {
+const LandingPageLayOut = () => {
   return (
     <>
       <Box
@@ -19,4 +19,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default LandingPageLayOut;

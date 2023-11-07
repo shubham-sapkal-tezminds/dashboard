@@ -18,7 +18,7 @@ const Cards = ({ data }) => {
                   boxShadow: "none",
                   backgroundColor: "#0064D9",
                   border: "none",
-                  borderRadius: 2,
+                  borderRadius: 4,
                   paddingBlock: "19px",
                   paddingInline: "21px",
                 }}
@@ -26,10 +26,10 @@ const Cards = ({ data }) => {
                 <Box item>
                   <Box>{item.avatarimg}</Box>
                   <Typography
+                    variant="body1"
                     sx={{
-                      fontFamily: "'Poppins', sans-serif",
-                      fontSize: "18px",
                       color: "#FFFFFF",
+                      fontWeight: "600",
                     }}
                   >
                     {item.title}

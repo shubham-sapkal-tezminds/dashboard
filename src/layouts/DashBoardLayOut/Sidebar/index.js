@@ -49,7 +49,6 @@ const DashBoardSideBar = (props) => {
         <List>
           <SidebarItems currentItem={location.pathname} />
         </List>
-        <Divider />
       </Drawer>
       <Main open={props.open}></Main>
     </>

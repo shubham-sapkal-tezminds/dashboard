@@ -1,7 +1,7 @@
 import LandingPageLayout from "../../layouts/LandingPageLayOut/index";
-import Login from "../../layouts/LandingPageLayOut/Login/Login";
-import SignUp from "../../layouts/LandingPageLayOut/SignUp/SignUp";
-import { PATH_LOGIN, PATH_SIGNUP } from "../../Path/index";
+import LogIn from "../../layouts/LandingPageLayOut/Login";
+import SignUp from "../../layouts/LandingPageLayOut/SignUp";
+import { PATH_LOGIN, PATH_SIGNUP } from "../../Config/index";
 
 const LandingPageRoutes = {
   path: "/",
@@ -9,7 +9,7 @@ const LandingPageRoutes = {
   children: [
     {
       path: PATH_LOGIN,
-      element: <Login />,
+      element: <LogIn />,
     },
     {
       path: PATH_SIGNUP,

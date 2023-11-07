@@ -10,35 +10,46 @@ import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import MailOutlineOutlinedIcon from "@mui/icons-material/MailOutlineOutlined";
 import AttachMoneyOutlinedIcon from "@mui/icons-material/AttachMoneyOutlined";
+import {
+  PATH_DASHBOARD,
+  PATH_CUSTOMER_LIST,
+  PATH_CONTACT_US,
+  PATH_PRICING,
+  PATH_SETTINGS,
+} from "../../../Config/index";
 import { Divider } from "@mui/material";
 
-const sideBarItems = [
+const sideBarItems1 = [
   {
-    link: "/dashboard",
+    link: PATH_DASHBOARD,
     label: "Dashboard",
     icon: <SpaceDashboardOutlinedIcon />,
   },
   {
-    link: "/customer",
+    link: PATH_CUSTOMER_LIST,
     label: "Customer List",
     icon: <PeopleAltOutlinedIcon />,
   },
   {
-    link: "/settings",
+    link: PATH_SETTINGS,
     label: "Settings",
     icon: <SettingsOutlinedIcon />,
   },
+];
+
+const sideBarItems2 = [
   {
-    link: "/contactUs",
+    link: PATH_CONTACT_US,
     label: "Contact Us",
     icon: <MailOutlineOutlinedIcon />,
   },
   {
-    link: "/pricing",
+    link: PATH_PRICING,
     label: "Pricing",
     icon: <AttachMoneyOutlinedIcon />,
   },
 ];
+
 const SidebarItems = ({ currentItem }) => {
   return (
     <>
@@ -49,7 +60,27 @@ const SidebarItems = ({ currentItem }) => {
       </List>
 
       <List>
-        {sideBarItems.map((item, index) => {
+        {sideBarItems1.map((item, index) => {
+          currentItem =
+            currentItem === "/" ? currentItem + "dashboard" : currentItem;
+
+          return (
+            <Link
+              to={item.link}
+              style={{ textDecoration: "none", color: "#2b2b2b" }}
+              key={"sidebar_" + index}
+            >
+              <ListItemButton selected={currentItem === item.link}>
+                <ListItemIcon sx={{ minWidth: "unset", mr: 2 }}>
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText primary={item.label} />
+              </ListItemButton>
+            </Link>
+          );
+        })}
+        <Divider />
+        {sideBarItems2.map((item, index) => {
           currentItem =
             currentItem === "/" ? currentItem + "dashboard" : currentItem;
 

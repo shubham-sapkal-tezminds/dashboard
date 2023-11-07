@@ -7,6 +7,9 @@ import {
   TextField,
   Avatar,
   TablePagination,
+  MenuItem,
+  IconButton,
+  Menu,
 } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import SearchIcon from "@mui/icons-material/Search";
@@ -14,35 +17,120 @@ import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { CustomerListApi } from "../../Services/CustomerListApi";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const dpURL = "/assets/Oval.png";
 
+// const columns = [
+//   { field: "userid", headerName: "ID", flex: 0.1 },
+//   { field: "updated_at", headerName: "Date / Time", flex: 0.5 },
+//   {
+//     field: "fullname",
+//     headerName: "Name",
+//     flex: 1.4,
+//     editable: true,
+//     renderCell: (params) => (
+//       <Box style={{ display: "flex", alignItems: "center" }}>
+//         <Avatar alt={`${params.row.firstname}`} src={dpURL} />
+//         <Typography variant="body1" style={{ marginLeft: "8px" }}>
+//           {params.row.firstname} + {params.row.lastname}
+//         </Typography>
+//       </Box>
+//     ),
+//   },
+//   { field: "email", headerName: "Email", flex: 0.4 },
+//   { field: "mobilenumber", headerName: "Phone", flex: 0.4 },
+//   {
+//     renderCell: () => (
+//       <Button sx={{ color: "#000" }}>
+//         <MoreVertOutlinedIcon />
+//       </Button>
+//     ),
+//     flex: 0.2,
+//   },
+// ];
+
+const options = ["Edit", "Delete"];
+
 const columns = [
-  { field: "id", headerName: "ID", flex: 0.1 },
-  { field: "updated_at", headerName: "Date / Time", flex: 0.5 },
+  {
+    field: "userid",
+    headerName: "ID",
+    // width: 90,
+    valueGetter: (params) => `# ${params.row.userid || ""}`,
+    flex: 0.1,
+  },
+  {
+    field: "updated_at",
+    headerName: "Date/Time",
+    type: "number",
+    // width: 200,
+    flex: 0.5,
+  },
   {
     field: "fullname",
-    headerName: "Name",
+    headerName: "Full Name",
+    description: "This column has a value getter and is not sortable.",
+    sortable: false,
+    // width: 300,
     flex: 1.4,
-    editable: true,
+
     renderCell: (params) => (
       <Box style={{ display: "flex", alignItems: "center" }}>
-        <Avatar alt={`${params.row.name}`} src={dpURL} />
+        <Avatar
+          alt={`${params.row.firstname} ${params.row.lastname}`}
+          src={dpURL}
+        />
         <Typography variant="body1" style={{ marginLeft: "8px" }}>
-          {params.row.fullname}
+          {params.row.firstname} {params.row.lastname}
         </Typography>
       </Box>
     ),
   },
-  { field: "username", headerName: "Email", flex: 0.4 },
-  { field: "mobile_no", headerName: "Phone", flex: 0.4 },
   {
-    renderCell: () => (
-      <Button sx={{ color: "#000" }}>
-        <MoreVertOutlinedIcon />
-      </Button>
-    ),
+    field: "contactDetails",
+    headerName: "Contact Details",
+    description: "This column has a value getter and is not sortable.",
+    sortable: false,
+    // width: 150,
+    flex: 0.4,
+
+    valueGetter: (params) => `${params.row.mobilenumber || ""}`,
+  },
+  {
+    field: "email",
+    headerName: "Email",
+    description: "This column has a value getter and is not sortable.",
+    sortable: false,
+    // width: 300,
+    flex: 0.4,
+    valueGetter: (params) => `${params.row.email || ""}`,
+  },
+  {
+    field: "actions",
+    headerName: "",
+    sortable: false,
     flex: 0.2,
+
+    renderCell: (params) => (
+      <Box marginLeft={"auto"}>
+        <IconButton
+          aria-label="more"
+          id="long-button"
+          aria-haspopup="true"
+          sx={{ marginLeft: "auto" }}
+        >
+          <MoreVertIcon />
+        </IconButton>
+        <Menu>
+          {options.map((option) => (
+            <MenuItem key={option} selected={option === "Pyxis"}>
+              {option}
+            </MenuItem>
+          ))}
+        </Menu>
+      </Box>
+    ),
   },
 ];
 
@@ -116,6 +204,7 @@ const Customer = ({ show = true, limitDatagridRows }) => {
           "&.MuiContainer-root": {
             pl: 0,
             pr: 0,
+            mt: show ? "65px" : "20px",
           },
         }}
       >
@@ -138,7 +227,7 @@ const Customer = ({ show = true, limitDatagridRows }) => {
               color: "#6B7584",
             }}
           >
-            <Typography variant="h6">Customer List</Typography>
+            <Typography variant="subtitle1">Customer List</Typography>
             {show ? (
               ""
             ) : (
@@ -177,6 +266,7 @@ const Customer = ({ show = true, limitDatagridRows }) => {
             <DataGrid
               rows={users}
               columns={columns}
+              getRowId={(row) => row.userid}
               border="none"
               autoHeight={true}
               initialState={{
